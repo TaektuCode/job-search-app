@@ -39,7 +39,7 @@ describe("MainNav", () => {
       });
       await userEvent.click(loginButton);
 
-      profileImage = screen.queryByRole("img", {
+      profileImage = screen.getByRole("img", {
         name: /User profile image/i, //case insensitive (U = u)
       });
       expect(profileImage).toBeInTheDocument; // now it should be in the DOM

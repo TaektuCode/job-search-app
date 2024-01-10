@@ -28,6 +28,7 @@
           <profile-image v-if="isLoggedIn" />
           <action-button
             v-else
+            text="Sign in"
             @click="loginUser"
           />
         </div>
