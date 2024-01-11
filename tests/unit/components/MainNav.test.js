@@ -5,14 +5,24 @@ import MainNav from "@/components/MainNav.vue";
 import { describe, expect } from "vitest";
 
 describe("MainNav", () => {
+  const renderMainNav = () => {
+    render(MainNav, {
+      global: {
+        stubs: {
+          FontAwesomeIcon: true,
+        },
+      },
+    });
+  };
+
   it("displays company name", () => {
-    render(MainNav);
+    renderMainNav();
     const companyName = screen.getByText("Bobo Careers");
     expect(companyName).toBeInTheDocument();
   });
 
   it("displays menu items for naviagation", () => {
-    render(MainNav);
+    renderMainNav();
     const naviagationMenuItems = screen.getAllByRole("listitem");
     const naviagationMenuTexts = naviagationMenuItems.map((item) => item.textContent);
     expect(naviagationMenuTexts).toEqual([
@@ -27,7 +37,7 @@ describe("MainNav", () => {
 
   describe("when the user logs in", () => {
     it("displays user profile picture", async () => {
-      render(MainNav);
+      renderMainNav();
 
       let profileImage = screen.queryByRole("img", {
         name: /User profile image/i, //case insensitive (U = u)
